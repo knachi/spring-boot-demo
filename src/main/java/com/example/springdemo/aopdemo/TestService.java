@@ -1,8 +1,8 @@
-package aopdemo;
+package com.example.springdemo.aopdemo;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component("test")
+@Service
 public class TestService {
 
     @LogExecutionTime
