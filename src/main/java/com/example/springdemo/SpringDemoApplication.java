@@ -16,9 +16,9 @@ public class SpringDemoApplication {
 		SpringApplication.run(SpringDemoApplication.class, args);
 	}
 
-	@PostConstruct
+	//@PostConstruct
 	public void test() {
-		testService.printFibonacci();
+
 	}
 
 }

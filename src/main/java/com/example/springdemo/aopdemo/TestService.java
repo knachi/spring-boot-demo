@@ -1,9 +1,18 @@
 package com.example.springdemo.aopdemo;
 
+import com.example.springdemo.cache.UserCache;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class TestService {
+
+    private final UserCache userCache;
 
     @LogExecutionTime
     public void printFibonacci() {
@@ -17,5 +26,18 @@ public class TestService {
             n1 = n2;
             n2 = n3;
         }
+    }
+
+    @EnableCache
+    public String getUser(final String key) {
+        final var user = userCache.get(key);
+        if (Objects.isNull(user)) {
+            log.info("cache miss");
+            userCache.put(key, key);
+            return key + "Put success";
+        } else {
+            return user;
+        }
+
     }
 }
